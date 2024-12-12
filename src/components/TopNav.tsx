@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Squash as Hamburger } from "hamburger-react";
 
 function TopNav() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="bg-[#283618] text-[#FEFAE0] py-2 px-8 text-xl">
       <div className="flex sm:w-11/12 mx-auto items-center justify-between ">
