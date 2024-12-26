@@ -11,11 +11,10 @@ function App() {
         <div className="text-4xl pb-12">Hello there</div>
         <div className=" text-xl pl-2">
           <p>
-            My name is <span className="text-[#BC6C25]">Will Borwegen</span> ,
-            and I am a software developer specializing in front-end and UI
-            development. I have had the pleasure to work with various government
-            contractors in DC, including working with esteemed clients such as
-            NOAA and the DoD.
+            My name is Will Borwegen and I am a software developer specializing
+            in front-end and UI development. I have had the pleasure to work
+            with various government contractors in DC, including working with
+            esteemed clients such as NOAA and the DoD.
           </p>
           <p className="pt-10">
             After recently completing a five-and-a-half-month hike from Mexico
