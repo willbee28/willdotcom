@@ -3,10 +3,10 @@ import { FaGithub } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="sticky bottom-0 w-full p-4 bg-[#283618] text-[#FEFAE0]">
+    <div className="sticky bottom-0 w-full p-4 mt-12 bg-[#283618] text-[#FEFAE0]">
       <div className="flex flex-col items-center mx-auto gap-5">
-        <div className="text-xl hidden sm:flex">Contact</div>
-        <ul className="flex gap-2">
+        <ul className="flex items-center gap-2">
+          <li className="text-xl hidden sm:flex">Contact -</li>
           <li className="hover:text-[#DDA15E]">
             <a href="https://www.instagram.com/willbee" target="_blank">
               <CiInstagram size={25} />
@@ -19,7 +19,7 @@ function Footer() {
           </li>
           <li className="hover:text-[#DDA15E]">
             <a
-              href="https://www.linkedin.com/in/https://www.linkedin.com/in/will-borwegen-34b841b7/"
+              href="https://www.linkedin.com/in/will-borwegen-34b841b7/"
               target="_blank"
             >
               <CiLinkedin size={25} />
