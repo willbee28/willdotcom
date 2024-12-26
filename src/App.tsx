@@ -7,7 +7,7 @@ function App() {
     // google font: lato-regular https://fonts.google.com/selection/embed
     <div className="lato-regular flex flex-col min-h-screen">
       <TopNav />
-      <div className="flex flex-col w-3/5 mx-auto mt-24 sm:mt-36 text-[#283618] overflow-auto flex-grow">
+      <div className="flex flex-col w-3/5 mx-auto mt-24 sm:mt-32 text-[#283618] overflow-auto flex-grow">
         <div className="text-4xl pb-8">Hello there</div>
         <div className=" text-xl pl-2">
           <p>
