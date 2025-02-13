@@ -1,6 +1,5 @@
 import Footer from "./components/Footer";
 import LandingText from "./components/LandingText";
-import PctTravels from "./components/PctTravels";
 import TopNav from "./components/TopNav";
 
 function App() {
