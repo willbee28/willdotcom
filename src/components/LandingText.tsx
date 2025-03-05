@@ -18,8 +18,8 @@ function LandingText() {
   };
 
   return (
-    <div className="flex-grow">
-      <div className="flex flex-col sm:w-3/5 w-4/5 mx-auto mt-24 sm:mt-64 text-[#283618]">
+    <div className="flex-grow flex items-center">
+      <div className="flex flex-col sm:w-3/5 w-4/5 mx-auto text-[#283618]">
         <motion.header
           variants={containerVariants}
           initial="hidden"
