@@ -3,3 +3,7 @@
   font-weight: 400;
   font-style: normal;
 }
+
+html {
+  background-color: #283618; /* Matches the footer background color */
+}
