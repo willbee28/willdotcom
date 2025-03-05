@@ -19,7 +19,7 @@ function LandingText() {
 
   return (
     <div className="flex-grow">
-      <div className="flex flex-col w-3/5 mx-auto mt-24 sm:mt-64 text-[#283618]">
+      <div className="flex flex-col sm:w-3/5 w-4/5 mx-auto mt-24 sm:mt-64 text-[#283618]">
         <motion.header
           variants={containerVariants}
           initial="hidden"
@@ -28,16 +28,16 @@ function LandingText() {
           <motion.div variants={itemVariants}>
             <div className="text-5xl pb-16">Hi there</div>
           </motion.div>
-          <div className="text-xl pl-8">
+          <div className="lg:pl-8">
             <motion.div variants={itemVariants}>
-              <p className="text-5xl">
+              <p className="text-3xl sm:text-5xl">
                 I'm
-                <span className="text-7xl"> Will Borwegen</span> and I work in
-                UI/UX development
+                <span className="text-5xl sm:text-7xl"> Will Borwegen</span> and
+                I work in UI/UX development
               </p>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <p className="text-3xl pt-16">
+              <p className="text-xl sm:text-3xl pt-16">
                 {" "}
                 You can check out some of my latest travels{" "}
                 <Link
@@ -48,17 +48,6 @@ function LandingText() {
                 </Link>
               </p>
             </motion.div>
-            <motion.div
-              animate={{
-                y: [0, -20, 0], // Move up and down
-              }}
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                repeat: Infinity, // Repeat the animation infinitely
-              }}
-              className="w-24 h-24 mx-auto"
-            ></motion.div>
           </div>
         </motion.header>
       </div>

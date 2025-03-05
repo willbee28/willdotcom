@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="bottom-0 w-full p-4 mt-12 bg-[#283618] text-[#FEFAE0]">
+    <div className="w-full p-4 mt-12 bg-[#283618] text-[#FEFAE0]">
       <div className="flex flex-col items-center mx-auto gap-5">
         <ul className="flex items-center gap-2">
           <li className="text-xl hidden sm:flex">Contact -</li>
