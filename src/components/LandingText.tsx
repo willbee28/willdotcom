@@ -42,7 +42,7 @@ function LandingText() {
                 You can check out some of my latest travels{" "}
                 <Link
                   to="/pct"
-                  className="hover:cursor-pointer hover:underline text-blue-700"
+                  className="hover:cursor-pointer hover:underline font-light text-yellow-800"
                 >
                   here &rarr;
                 </Link>

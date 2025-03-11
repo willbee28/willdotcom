@@ -30,11 +30,8 @@ const PctTravels = () => {
           ))}
         </div>
         <div className="w-3/5 mx-auto my-8 sm:my-24 text-[#283618] text-3xl leading-relaxed">
-          <div className="mb-12">This journey was once in a lifetime </div>
-          <div className="flex justify-end">
-            And I hope that these pictures can bring you some of the joy that
-            they have brought me
-          </div>
+          I hope that these pictures can bring you even a fraction of the joy
+          that they have brought me
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 ">
           {imageUrls.map((imageUrl, index) => (
