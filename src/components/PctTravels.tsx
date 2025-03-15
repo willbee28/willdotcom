@@ -1,3 +1,35 @@
+import { useState } from "react";
+
+const ImageWithLoading = ({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+}) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="relative">
+      {!loaded && (
+        <div className="absolute inset-0 flex justify-center items-center bg-gray-200">
+          <div className="loader"></div> {/* Replace with your spinner */}
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} ${
+          loaded ? "opacity-100" : "opacity-0"
+        } transition-opacity duration-300`}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
+};
+
 const PctTravels = () => {
   const prelimImageUrls: string[] = [];
   const imageUrls: string[] = [];
@@ -35,7 +67,7 @@ const PctTravels = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 ">
           {imageUrls.map((imageUrl, index) => (
-            <img
+            <ImageWithLoading
               key={index}
               className="h-full w-full object-cover"
               src={imageUrl}
@@ -49,40 +81,3 @@ const PctTravels = () => {
 };
 
 export default PctTravels;
-
-// const ImageWithLoading = ({ src = "", ...imageAtts }: imageType) => {
-//   const [loaded, setLoaded] = useState(false);
-//   const { ref, inView } = useInView({
-//     triggerOnce: true,
-//     rootMargin: "100px",
-//   });
-
-//   useEffect(() => {
-//     if (inView) {
-//       const img = new Image();
-//       img.src = src;
-//       img.onload = () => {
-//         setLoaded(true);
-//       };
-//     }
-//   }, [inView, src]);
-
-//   return (
-//     <div ref={ref} className="relative w-40 h-40 m-4">
-//       {!loaded && (
-//         <div className="absolute inset-0 flex justify-center items-center bg-gray-200">
-//           <div className="loader"></div>
-//         </div>
-//       )}
-//       <img
-//         {...imageAtts}
-//         src={src}
-//         className={`w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
-//           loaded ? "opacity-100 blur-0" : "opacity-0 blur-lg"
-//         }`}
-//         style={{ filter: loaded ? "none" : "blur(10px)" }}
-//         onLoad={() => setLoaded(true)}
-//       />
-//     </div>
-//   );
-// };
