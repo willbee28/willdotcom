@@ -10,11 +10,11 @@ const ImageWithLoading = ({
   className: string;
 }) => {
   const [loaded, setLoaded] = useState(false);
-
+  console.log("loaded", loaded);
   return (
     <div className="relative">
       {!loaded && (
-        <div className="absolute inset-0 flex justify-center items-center bg-gray-200">
+        <div className="flex justify-center items-center bg-gray-200 h-">
           <div className="loader"></div> {/* Replace with your spinner */}
         </div>
       )}
@@ -53,7 +53,7 @@ const PctTravels = () => {
       <div className="mt-24 mx-auto w-4/5  ">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2">
           {prelimImageUrls.map((imageUrl, index) => (
-            <img
+            <ImageWithLoading
               key={index}
               className="h-full w-full object-cover"
               src={imageUrl}
