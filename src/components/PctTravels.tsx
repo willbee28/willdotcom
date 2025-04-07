@@ -10,11 +10,11 @@ const ImageWithLoading = ({
   className: string;
 }) => {
   const [loaded, setLoaded] = useState(false);
-  console.log("loaded", loaded);
+
   return (
     <div className="relative">
       {!loaded && (
-        <div className="flex justify-center items-center bg-gray-200 h-">
+        <div className="flex justify-center items-center bg-gray-200 h-128">
           <div className="loader"></div> {/* Replace with your spinner */}
         </div>
       )}
