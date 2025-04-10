@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 function Projects() {
   const projects = [
     {
@@ -17,10 +19,18 @@ function Projects() {
 
   return (
     <section className="bg-[#DDA15E]">
-      <div className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="text-4xl font-bold text-[#283618] ml-24 mb-16">
-          My Projects
-        </h2>
+      <div className="mx-auto max-w-6xl px-4 py-52">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl font-bold text-[#283618] ml-24 mb-24">
+            My Projects
+          </h2>
+        </motion.section>
+
         <div className="grid gap-8 grid-cols-2">
           {projects.map((project, index) => (
             <div key={index} className="bg-[#343634] rounded-md p-5">
