@@ -6,7 +6,7 @@ function TopNav() {
   const [isNavOpen, setNavOpen] = useState(false);
   return (
     <div className="text-[#FEFAE0]">
-      <div className="fixed w-full py-2 px-8 text-xl bg-[#283618] z-10">
+      <div className="fixed w-full py-2 px-8 text-xl bg-[#283618] z-20">
         <div className="flex sm:w-11/12 mx-auto items-center justify-between">
           <Link to="/" className="cols-3 flex gap-4 font-semibold text-3xl">
             <img width="40px" height="40px" src="/bear.svg"></img>
@@ -30,7 +30,7 @@ function TopNav() {
       {/* Mobile menu */}
       <div
         className={`sm:hidden bg-[#283618] fixed right-0 w-44 text-3xl
-          shadow-lg transform transition-transform duration-300 ${
+          shadow-lg transform transition-transform duration-300 z-10 ${
             isNavOpen ? "translate-y-16" : "-translate-y-full"
           }`}
       >
