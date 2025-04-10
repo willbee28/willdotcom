@@ -22,3 +22,15 @@
     transform: rotate(360deg);
   }
 }
+
+.image-animated {
+  filter: grayscale(95%) invert(10%) sepia(8%) saturate(350%) hue-rotate(-6deg)
+    brightness(105%) contrast(95%);
+  transition: transform 8s;
+  transform: translateY(-0.4%);
+}
+
+.image-animated:hover {
+  filter: none;
+  transform: translateY(-79.90028%);
+}

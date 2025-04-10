@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router";
 
 function LandingText() {
+  // Animation variants for the container and items
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
+        delay: 0.1, // Delay before starting the animation
         staggerChildren: 0.5, // Delay between children animations
       },
     },
@@ -18,7 +19,7 @@ function LandingText() {
   };
 
   return (
-    <div className="flex-grow flex items-center">
+    <div className="flex-grow flex items-center h-[85vh]">
       <div className="flex flex-col sm:w-3/5 w-4/5 mx-auto text-[#283618]">
         <motion.header
           variants={containerVariants}
@@ -39,13 +40,7 @@ function LandingText() {
             <motion.div variants={itemVariants}>
               <p className="text-xl sm:text-3xl pt-16">
                 {" "}
-                You can check out some of my latest travels{" "}
-                <Link
-                  to="/pct"
-                  className="hover:cursor-pointer hover:underline font-light text-yellow-800"
-                >
-                  here &rarr;
-                </Link>
+                You can check out some of my latest work below ↓
               </p>
             </motion.div>
           </div>
