@@ -24,19 +24,19 @@ function Projects() {
 
   return (
     <section className="bg-[#DDA15E]">
-      <div className="mx-auto max-w-6xl px-4 py-52">
+      <div className="mx-auto md:max-w-6xl max-w-sm px-4 md:py-52 py-24">
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-[#283618] ml-24 mb-24">
+          <h2 className="text-center md:text-left text-4xl font-bold text-[#283618] md:ml-24 mb-24">
             My Projects
           </h2>
         </motion.section>
 
-        <div className="grid gap-8 grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 grid-cols-1">
           {projects.map((project, index) => (
             <a
               href={project.link}
