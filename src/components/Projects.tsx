@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FaGithub } from "react-icons/fa";
 
 function Projects() {
   const projects = [
@@ -8,13 +9,15 @@ function Projects() {
       description:
         "A small app I built to display my favorite photos from a 6-month solo journey along the Pacific Crest Trail.",
       link: "https://wborwegen.com/pct",
+      github: "https://github.com/willbee28/willdotcom",
     },
     {
       title: "150th Anniversary",
       image: "/fullSiteScreenshots/lighthouse_site.png",
       description:
         "A website I made for a client who needed a site to celebrate the 150th anniversary of a lighthouse, with event information and tickets.",
-      link: "https://thomaspoint150th.com/",
+      link: "https://github.com/willbee28/lighthouse-anniversary",
+      github: "https://github.com/willbee28/lighthouse-anniversary",
     },
     // Add more projects as needed
   ];
@@ -46,9 +49,19 @@ function Projects() {
                 key={index}
                 className="bg-[#343634] rounded-md p-5 hover:scale-101 duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-all ease-in "
               >
-                <div className="text-[#fefae0] h-20">
-                  {/* <div className="text-xl ">{project.title}</div> */}
+                <div className="text-[#fefae0] h-20 mb-1">
                   <div className="">{project.description}</div>
+                  <a
+                    href="https://github.com/willbee28"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex justify-end mr-2"
+                  >
+                    <FaGithub
+                      size={20}
+                      className=" hover:scale-150 duration-300 "
+                    />
+                  </a>
                 </div>
                 <div className="h-72 overflow-hidden rounded-sm border-[#fefae0] border-1">
                   <img
