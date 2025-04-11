@@ -46,7 +46,7 @@ function Projects() {
                 key={index}
                 className="bg-[#343634] rounded-md p-5 hover:scale-101 duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-all ease-in "
               >
-                <div className="text-[#fefae0] h-24">
+                <div className="text-[#fefae0] h-20">
                   {/* <div className="text-xl ">{project.title}</div> */}
                   <div className="">{project.description}</div>
                 </div>
