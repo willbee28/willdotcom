@@ -49,7 +49,7 @@ function Projects() {
                 key={index}
                 className="bg-[#343634] rounded-md p-5 hover:scale-101 duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-all ease-in "
               >
-                <div className="text-[#fefae0] h-20 mb-1">
+                <div className="text-[#fefae0] mb-1">
                   <div className="">{project.description}</div>
                   <a
                     href="https://github.com/willbee28"
@@ -59,7 +59,7 @@ function Projects() {
                   >
                     <FaGithub
                       size={20}
-                      className=" hover:scale-150 duration-300 "
+                      className=" hover:scale-150 duration-300 mb-1"
                     />
                   </a>
                 </div>
