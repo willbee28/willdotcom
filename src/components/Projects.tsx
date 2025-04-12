@@ -59,7 +59,7 @@ function Projects() {
                   >
                     <FaGithub
                       size={20}
-                      className=" hover:scale-150 duration-300 mb-1"
+                      className=" hover:scale-140 duration-300 mb-1"
                     />
                   </a>
                 </div>
