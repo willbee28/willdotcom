@@ -16,7 +16,7 @@ function Projects() {
       image: "/fullSiteScreenshots/lighthouse_site.png",
       description:
         "A website I made for a client who needed a site to celebrate the 150th anniversary of a lighthouse, with event information and tickets.",
-      link: "https://github.com/willbee28/lighthouse-anniversary",
+      link: "https://thomaspoint150th.com/",
       github: "https://github.com/willbee28/lighthouse-anniversary",
     },
     // Add more projects as needed
