@@ -34,7 +34,7 @@ function Footer() {
               <CiLinkedin size={25} />
             </a>
           </li>
-          <li className=" mx-0.5 hover:text-[#DDA15E]">
+          <li className="mx-0.5 hover:text-[#DDA15E]">
             <a
               href="https://github.com/willbee28"
               target="_blank"
