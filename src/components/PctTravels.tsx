@@ -1,4 +1,5 @@
 import ImageWithLoading from "./ImageWithLoading";
+import PctMap from "./PctMap";
 
 const PctTravels = () => {
   const prelimImageUrls: string[] = [];
@@ -14,12 +15,16 @@ const PctTravels = () => {
 
   return (
     <div>
-      <div className="w-3/5 mx-auto mt-36 sm:my-64 text-[#283618] text-3xl leading-relaxed">
-        <div>
-          <span className="font-bold">Below</span> you can find picture of my
-          travels from Mexico to Canada along the Pacific Crest Trail
+      <div className="w-3/5 mx-auto sm:my-64 text-[#283618] text-3xl leading-relaxed">
+        <div className="flex 2xl:flex-row flex-col items-center justify-between">
+          <PctMap />
+          <div className="md:w-1/2 2xl:mt-36 mt-44">
+            <span className="font-bold">Below</span> you can find picture of my
+            travels from Mexico to Canada along the Pacific Crest Trail
+          </div>
         </div>
       </div>
+
       <div className="mt-24 mx-auto w-4/5  ">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2">
           {prelimImageUrls.map((imageUrl, index) => (
@@ -31,10 +36,12 @@ const PctTravels = () => {
             />
           ))}
         </div>
+
         <div className="w-3/5 mx-auto my-8 sm:my-24 text-[#283618] text-3xl leading-relaxed">
           I hope that these pictures can bring you even a fraction of the joy
           that they have brought me
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 ">
           {imageUrls.map((imageUrl, index) => (
             <ImageWithLoading
