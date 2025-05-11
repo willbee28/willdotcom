@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
+import { Link } from "react-router";
 
 function Projects() {
   const projects = [
@@ -7,9 +8,10 @@ function Projects() {
       title: "My Pacific Crest Trail Experience",
       image: "/fullSiteScreenshots/pct_site_cropped.png",
       description:
-        "A small app I built to display my favorite photos from a 6-month solo journey along the Pacific Crest Trail.",
-      link: "https://wborwegen.com/pct",
+        "An app I built to display my favorite photos from a 6-month solo journey along the Pacific Crest Trail.",
+      link: "/pct",
       github: "https://github.com/willbee28/willdotcom",
+      localLink: true,
     },
     {
       title: "150th Anniversary",
@@ -18,6 +20,7 @@ function Projects() {
         "A website I made for a client who needed a site to celebrate the 150th anniversary of a lighthouse, with event information and tickets.",
       link: "https://thomaspoint150th.com/",
       github: "https://github.com/willbee28/lighthouse-anniversary",
+      localLink: false,
     },
     // Add more projects as needed
   ];
@@ -37,24 +40,15 @@ function Projects() {
         </motion.section>
 
         <div className="grid gap-8 md:grid-cols-2 grid-cols-1">
-          {projects.map((project, index) => (
-            <a
-              href={project.link}
-              className=""
-              key={index}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <div
-                key={index}
-                className="bg-[#343634] rounded-md p-5 hover:scale-101 duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-all ease-in "
-              >
+          {projects.map((project, index) => {
+            const children = (
+              <div className="bg-[#343634] rounded-md p-5 hover:scale-101 duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-all ease-in ">
                 <div className="text-[#fefae0] mb-1">
                   <div className="">{project.description}</div>
                   <a
                     href="https://github.com/willbee28"
-                    target="_blank"
                     rel="noopener noreferrer"
+                    target="_blank"
                     className="flex justify-end mr-2"
                   >
                     <FaGithub
@@ -71,8 +65,24 @@ function Projects() {
                   />
                 </div>
               </div>
-            </a>
-          ))}
+            );
+            if (project.localLink)
+              return (
+                <Link to={project.link} key={index}>
+                  {children}
+                </Link>
+              );
+            return (
+              <a
+                href={project.link}
+                key={index}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {children}
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
