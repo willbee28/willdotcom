@@ -2,6 +2,7 @@ import { useState } from "react";
 import ImageWithLoading from "./ImageWithLoading";
 import PctMap from "./PctMap";
 import ImageModal from "./ImageModal";
+import getLatLonFromImg from "../utils/getLatLonFromImg";
 
 const PctTravels = () => {
   const imageUrls: string[] = [];
@@ -10,27 +11,31 @@ const PctTravels = () => {
     imageUrls.push(imagePath);
   }
 
-  const [hideIntro, setHideeIntro] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState<{
     imageUrl: string;
     index: number;
-  } | null>(null);
+  } | null>({ imageUrl: `/pctPhotos/${1}.jpeg`, index: 0 });
+  const [latLon, setLatLon] = useState<{ lat: number; lon: number } | null>(
+    null
+  );
 
   return (
     <div>
       <div className="w-3/5 mx-auto h-screen text-[#283618] text-3xl leading-relaxed">
         <div className="absolute left-1/2 transform -translate-x-1/2 mt-40">
-          <PctMap />
+          <PctMap latLon={latLon} />
         </div>
-        <div className="lg:pt-124 pt-64 grid lg:grid-cols-2">
-          <div className={`col-start-2 ${hideIntro ? "hidden" : "relative"}`}>
+        <div className="lg:pt-96 pt-64 grid lg:grid-cols-2">
+          <div className={`col-start-2 ${!showIntro ? "hidden" : "relative"}`}>
             <div className="bg-[#fefae0] border-2 border-[#283618] rounded-md p-5">
               <span className="font-bold">Below</span> you can find pictures of
               my travels from Mexico to Canada along the Pacific Crest Trail
               <button
                 className="absolute bottom-2 right-2 text-xs px-2 py-1 hover:text-[#496629] hover:cursor-pointer transition"
                 onClick={() => {
-                  setHideeIntro(true);
+                  setShowIntro(false);
                 }}
               >
                 Hide
@@ -52,14 +57,27 @@ const PctTravels = () => {
                   imageUrl: imageUrl,
                   index: index,
                 });
+                setShowModal(true);
               }}
             />
           ))}
         </div>
       </div>
-      {modalData && (
-        <ImageModal modalData={modalData} setModalData={setModalData} />
-      )}
+      <ImageModal
+        showModal={showModal}
+        modalData={modalData}
+        setShowModal={(e) => setShowModal(e)}
+        handleShowOnMap={async () => {
+          // hide intro text
+          setShowIntro(false);
+          if (modalData) {
+            const gpsData = await getLatLonFromImg(modalData?.imageUrl);
+            if (gpsData) {
+              setLatLon(gpsData);
+            }
+          }
+        }}
+      />
     </div>
   );
 };

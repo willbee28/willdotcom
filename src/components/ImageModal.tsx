@@ -1,28 +1,58 @@
+import { IoDownloadOutline } from "react-icons/io5";
+
 type ModalDataType = {
   imageUrl: string;
   index: number;
 } | null;
 
 type ImageModalProps = {
+  showModal: boolean;
+  setShowModal: (bool: boolean) => void;
   modalData: ModalDataType;
-  setModalData: (m: ModalDataType) => void;
+  handleShowOnMap: () => void;
 };
 
-const ImageModal = ({ modalData, setModalData }: ImageModalProps) => {
-  return (
-    <div
-      className="fixed inset-0 bg-black/80 z-30 flex items-center justify-center"
-      onClick={() => setModalData(null)}
-    >
-      <div className="" onClick={(e) => e.stopPropagation()}>
-        <img
-          src={modalData?.imageUrl}
-          alt={`Image ${modalData?.index}`}
-          className="max-w-full max-h-[90vh] object-contain"
-        />
+const ImageModal = ({
+  showModal,
+  setShowModal,
+  modalData,
+  handleShowOnMap,
+}: ImageModalProps) => {
+  if (!showModal) return null;
+  // check if modalData to make typescript below happy
+  if (modalData)
+    return (
+      <div
+        className="fixed inset-0 bg-black/80 z-30 flex items-center justify-center"
+        onClick={() => setShowModal(false)}
+      >
+        <div className="relative" onClick={(e) => e.stopPropagation()}>
+          <img
+            src={modalData.imageUrl}
+            alt={`Image ${modalData.index}`}
+            className="max-w-full max-h-[90vh] object-contain"
+          />
+          <a
+            href={modalData.imageUrl}
+            download={`image-${modalData.index}.jpeg`}
+            className="absolute bottom-4 right-4 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 transition"
+          >
+            <IoDownloadOutline />
+          </a>
+
+          <button
+            className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
+            onClick={() => {
+              setShowModal(false);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              handleShowOnMap();
+            }}
+          >
+            Show on Map
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default ImageModal;

@@ -16,7 +16,6 @@ const ImageWithLoading = ({
         </div>
       )}
       <img
-        // ref={ref}
         src={src}
         alt={alt}
         onClick={onClick}

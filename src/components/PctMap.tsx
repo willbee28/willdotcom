@@ -2,6 +2,7 @@ import {
   Layer,
   LineLayerSpecification,
   Map,
+  Marker,
   NavigationControl,
   Source,
 } from "react-map-gl/maplibre";
@@ -10,7 +11,11 @@ import type { FeatureCollection } from "geojson";
 import { useEffect, useState } from "react";
 // import pctFullJson from "/geojson/2024-pct-full.json";
 
-export default function PctMap() {
+export default function PctMap({
+  latLon,
+}: {
+  latLon: { lat: number; lon: number } | null;
+}) {
   const layerStyle: LineLayerSpecification = {
     id: "pctRoute",
     type: "line",
@@ -44,7 +49,7 @@ export default function PctMap() {
           zoom: 4.2,
         }}
         style={{ width: 1600, height: 600 }}
-        // TODO: decide if remove: attributionControl={false}
+        attributionControl={false}
         mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
           import.meta.env.VITE_MAPTILER_KEY
         }`}
@@ -57,26 +62,22 @@ export default function PctMap() {
             setShowPct(true);
           }
         }}
-        // disable mouse scroll to not interupt the native scrolling of the web page.
-        // mouse scroll works if cntrl, meta, or alt is pressed during scroll
-        onWheel={(e) => {
-          if (e.originalEvent.ctrlKey) {
-            return;
-          }
-          if (e.originalEvent.metaKey) {
-            return;
-          }
-          if (e.originalEvent.altKey) {
-            return;
-          }
-          e.preventDefault();
-        }}
+        // mouse scroll only works if cntrl, meta, or alt is pressed, to allow for native webpage scrolling
+        cooperativeGestures={true}
       >
         <NavigationControl
           showCompass={true}
           showZoom={true}
           visualizePitch={true}
         />
+        {latLon?.lat && latLon.lon && (
+          <Marker longitude={latLon.lon} latitude={latLon.lat}>
+            <div className="relative w-6 h-6">
+              {/* Green centered dot */}
+              <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-green-700 rounded-full border-2 border-white shadow-lg transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
+          </Marker>
+        )}
         {geoData && showPct && (
           <Source id="pctRoute" type="geojson" data={geoData}>
             <Layer {...layerStyle} />
