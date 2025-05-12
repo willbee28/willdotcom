@@ -42,7 +42,7 @@ export default function PctMap() {
           zoom: 4.2,
         }}
         style={{ width: 1200, height: 600 }}
-        attributionControl={false}
+        // TODO: decide if remove: attributionControl={false}
         mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
           import.meta.env.VITE_MAPTILER_KEY
         }`}

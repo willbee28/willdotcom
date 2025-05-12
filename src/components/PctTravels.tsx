@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ImageWithLoading from "./ImageWithLoading";
 import PctMap from "./PctMap";
+import ImageModal from "./ImageModal";
 
 const PctTravels = () => {
   const imageUrls: string[] = [];
@@ -57,21 +58,7 @@ const PctTravels = () => {
         </div>
       </div>
       {modalData && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-black/20 z-30"
-          onClick={() => setModalData(null)}
-        >
-          <div
-            className="bg-[#fefae0] rounded-lg h-[98%] w-5/6 flex justify-center items-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              className="h-[96%] w-[96%] object-contain"
-              src={modalData.imageUrl}
-              alt={`Image ${modalData.index}`}
-            />
-          </div>
-        </div>
+        <ImageModal modalData={modalData} setModalData={setModalData} />
       )}
     </div>
   );

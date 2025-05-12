@@ -20,7 +20,7 @@ const ImageWithLoading = ({
         alt={alt}
         onClick={onClick}
         onLoad={() => setLoaded(true)}
-        className={`${className} w-full h-full object-cover transition-opacity duration-500 ${
+        className={`${className} w-full h-full transition-opacity duration-500 ${
           loaded ? "opacity-100" : "opacity-0"
         } absolute inset-0`}
       />
