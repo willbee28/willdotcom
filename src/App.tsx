@@ -1,6 +1,5 @@
 import { Outlet, ScrollRestoration } from "react-router";
 import Footer from "./components/Footer";
-import Projects from "./components/Projects";
 import TopNav from "./components/TopNav";
 
 export default function App() {
