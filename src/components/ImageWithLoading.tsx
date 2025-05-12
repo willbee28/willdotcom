@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const ImageWithLoading = ({
   src,
@@ -6,24 +6,6 @@ const ImageWithLoading = ({
   className,
   onClick,
 }: React.ImgHTMLAttributes<HTMLImageElement>) => {
-  // const [visible, setVisible] = useState(false);
-  // const ref = useRef<HTMLImageElement>(null);
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       console.log("check intersection");
-  //       if (entry.isIntersecting) {
-  //         setVisible(true);
-  //         observer.disconnect();
-  //       }
-  //     },
-  //     { threshold: 0.1 }
-  //   );
-  //   if (ref.current) observer.observe(ref.current);
-  //   return () => observer.disconnect();
-  // }, []);
-
   const [loaded, setLoaded] = useState(false);
 
   return (

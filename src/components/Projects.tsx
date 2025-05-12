@@ -6,21 +6,19 @@ function Projects() {
   const projects = [
     {
       title: "My Pacific Crest Trail Experience",
-      image: "/fullSiteScreenshots/pct_site_cropped.png",
+      image: "/fullSiteScreenshots/pct_site_cropped.jpg",
       description:
         "An app I built to display my favorite photos from a 6-month solo journey along the Pacific Crest Trail.",
       link: "/pct",
       github: "https://github.com/willbee28/willdotcom",
-      localLink: true,
     },
     {
       title: "150th Anniversary",
-      image: "/fullSiteScreenshots/lighthouse_site.png",
+      image: "/fullSiteScreenshots/lighthouse_site.jpg",
       description:
         "A website I made for a client who needed a site to celebrate the 150th anniversary of a lighthouse, with event information and tickets.",
       link: "https://thomaspoint150th.com/",
       github: "https://github.com/willbee28/lighthouse-anniversary",
-      localLink: false,
     },
     // Add more projects as needed
   ];
@@ -41,8 +39,30 @@ function Projects() {
 
         <div className="grid gap-8 md:grid-cols-2 grid-cols-1">
           {projects.map((project, index) => {
-            const children = (
-              <div className="bg-[#343634] rounded-md p-5 hover:scale-101 duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-all ease-in ">
+            const image = (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full object-cover image-color-scroll"
+              />
+            );
+            const link = // if route start with "/" this is a local route, otherwise it's an external link
+              project.link[0] === "/" ? (
+                <Link to={project.link} key={index}>
+                  {image}
+                </Link>
+              ) : (
+                <a
+                  href={project.link}
+                  key={index}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {image}
+                </a>
+              );
+            return (
+              <div className="bg-[#343634] rounded-md p-5" key={project.link}>
                 <div className="text-[#fefae0] mb-1">
                   <div className="">{project.description}</div>
                   <a
@@ -53,34 +73,14 @@ function Projects() {
                   >
                     <FaGithub
                       size={20}
-                      className=" hover:scale-140 duration-300 mb-1"
+                      className=" hover:scale-130 duration-300 mb-1"
                     />
                   </a>
                 </div>
                 <div className="h-72 overflow-hidden rounded-sm border-[#fefae0] border-1">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full object-cover image-color-scroll"
-                  />
+                  {link}
                 </div>
               </div>
-            );
-            if (project.localLink)
-              return (
-                <Link to={project.link} key={index}>
-                  {children}
-                </Link>
-              );
-            return (
-              <a
-                href={project.link}
-                key={index}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {children}
-              </a>
             );
           })}
         </div>
