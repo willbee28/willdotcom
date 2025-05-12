@@ -4,11 +4,8 @@ const ImageWithLoading = ({
   src,
   alt,
   className,
-}: {
-  src: string;
-  alt: string;
-  className: string;
-}) => {
+  onClick,
+}: React.ImgHTMLAttributes<HTMLImageElement>) => {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -21,6 +18,7 @@ const ImageWithLoading = ({
       <img
         src={src}
         alt={alt}
+        onClick={onClick}
         onLoad={() => setLoaded(true)}
         className={`${className} w-full h-full object-cover transition-opacity duration-500 ${
           loaded ? "opacity-100" : "opacity-0"

@@ -10,6 +10,10 @@ const PctTravels = () => {
   }
 
   const [hideIntro, setHideeIntro] = useState(false);
+  const [modalData, setModalData] = useState<{
+    imageUrl: string;
+    index: number;
+  } | null>({ imageUrl: `/pctPhotos/${13}.png`, index: 10 });
 
   return (
     <div>
@@ -42,10 +46,33 @@ const PctTravels = () => {
               className="h-full w-full object-cover image-color-ease-in hover:cursor-pointer"
               src={imageUrl}
               alt={`Image ${index}`}
+              onClick={() => {
+                setModalData({
+                  imageUrl: imageUrl,
+                  index: index,
+                });
+              }}
             />
           ))}
         </div>
       </div>
+      {modalData && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black/20 z-30"
+          onClick={() => setModalData(null)}
+        >
+          <div
+            className="bg-[#fefae0] rounded-lg h-[98%] w-5/6 flex justify-center items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              className="h-[96%] w-[96%] object-contain"
+              src={modalData.imageUrl}
+              alt={`Image ${modalData.index}`}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
