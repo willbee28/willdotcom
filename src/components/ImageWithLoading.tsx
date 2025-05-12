@@ -12,19 +12,19 @@ const ImageWithLoading = ({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative h-128 bg-gray-200">
       {!loaded && (
-        <div className="flex justify-center items-center bg-gray-200 h-128">
-          <div className="loader"></div> {/* Replace with your spinner */}
+        <div className="absolute inset-0 flex justify-center items-center">
+          <div className="loader"></div> {/* Your loading spinner */}
         </div>
       )}
       <img
         src={src}
         alt={alt}
-        className={`${className} ${
-          loaded ? "opacity-100" : "opacity-0"
-        } transition-opacity duration-300`}
         onLoad={() => setLoaded(true)}
+        className={`${className} w-full h-full object-cover transition-opacity duration-500 ${
+          loaded ? "opacity-100" : "opacity-0"
+        } absolute inset-0`}
       />
     </div>
   );

@@ -39,7 +39,7 @@ const PctTravels = () => {
           {imageUrls.map((imageUrl, index) => (
             <ImageWithLoading
               key={index}
-              className="h-full w-full object-cover image-color-ease-in"
+              className="h-full w-full object-cover image-color-ease-in hover:cursor-pointer"
               src={imageUrl}
               alt={`Image ${index}`}
             />

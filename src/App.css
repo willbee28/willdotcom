@@ -36,6 +36,6 @@
 }
 
 .image-color-ease-in:hover {
-  filter: grayscale(90%) brightness(105%) contrast(95%);
+  filter: brightness(115%) contrast(105%);
   transition: filter 0.5s ease;
 }
