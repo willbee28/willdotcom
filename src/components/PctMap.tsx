@@ -2,6 +2,7 @@ import {
   Layer,
   LineLayerSpecification,
   Map,
+  NavigationControl,
   Source,
 } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -25,6 +26,7 @@ export default function PctMap() {
   //  so we want to remove ours when we zoom in close enough
   const [showPct, setShowPct] = useState<Boolean>(true);
 
+  // its such a big file of geojson that we actually want to load it via a Promise
   useEffect(() => {
     fetch("/geojson/2024-pct-full.json")
       .then((res) => res.json())
@@ -34,14 +36,14 @@ export default function PctMap() {
   }, []);
 
   return (
-    <div className="border-2 border-[#798c66] rounded-sm">
+    <div className="border-1 border-[#798c66] rounded-sm">
       <Map
         initialViewState={{
           longitude: -115,
           latitude: 41.3,
           zoom: 4.2,
         }}
-        style={{ width: 1200, height: 600 }}
+        style={{ width: 1600, height: 600 }}
         // TODO: decide if remove: attributionControl={false}
         mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
           import.meta.env.VITE_MAPTILER_KEY
@@ -55,7 +57,26 @@ export default function PctMap() {
             setShowPct(true);
           }
         }}
+        // disable mouse scroll to not interupt the native scrolling of the web page.
+        // mouse scroll works if cntrl, meta, or alt is pressed during scroll
+        onWheel={(e) => {
+          if (e.originalEvent.ctrlKey) {
+            return;
+          }
+          if (e.originalEvent.metaKey) {
+            return;
+          }
+          if (e.originalEvent.altKey) {
+            return;
+          }
+          e.preventDefault();
+        }}
       >
+        <NavigationControl
+          showCompass={true}
+          showZoom={true}
+          visualizePitch={true}
+        />
         {geoData && showPct && (
           <Source id="pctRoute" type="geojson" data={geoData}>
             <Layer {...layerStyle} />

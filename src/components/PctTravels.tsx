@@ -6,7 +6,7 @@ import ImageModal from "./ImageModal";
 const PctTravels = () => {
   const imageUrls: string[] = [];
   for (let i = 1; i < 151; i++) {
-    const imagePath = `/pctPhotos/${i}.png`;
+    const imagePath = `/pctPhotos/${i}.jpeg`;
     imageUrls.push(imagePath);
   }
 
@@ -19,7 +19,7 @@ const PctTravels = () => {
   return (
     <div>
       <div className="w-3/5 mx-auto h-screen text-[#283618] text-3xl leading-relaxed">
-        <div className="absolute left-1/2 transform -translate-x-1/2 mt-44">
+        <div className="absolute left-1/2 transform -translate-x-1/2 mt-40">
           <PctMap />
         </div>
         <div className="lg:pt-124 pt-64 grid lg:grid-cols-2">
