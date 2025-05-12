@@ -34,18 +34,18 @@ export default function PctMap() {
   }, []);
 
   return (
-    <div className="border-2 border-[#9ab282] rounded-sm">
+    <div className="border-2 border-[#798c66] rounded-sm">
       <Map
         initialViewState={{
-          longitude: -120,
+          longitude: -115,
           latitude: 41.3,
           zoom: 4.2,
         }}
-        style={{ width: 400, height: 600 }}
+        style={{ width: 1200, height: 600 }}
         attributionControl={false}
-        // mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
-        //   import.meta.env.VITE_MAPTILER_KEY
-        // }`}
+        mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
+          import.meta.env.VITE_MAPTILER_KEY
+        }`}
         onZoom={(e) => {
           const zoom = e.viewState.zoom;
           if (zoom > 10 && showPct) {

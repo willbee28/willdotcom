@@ -61,7 +61,7 @@ function Projects() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full object-cover image-animated"
+                    className="w-full object-cover image-color-scroll"
                   />
                 </div>
               </div>

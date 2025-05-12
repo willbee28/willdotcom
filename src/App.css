@@ -23,14 +23,19 @@
   }
 }
 
-.image-animated {
+.image-color-scroll {
   filter: grayscale(95%) invert(10%) sepia(8%) saturate(350%) hue-rotate(-6deg)
     brightness(105%) contrast(95%);
   transition: transform 8s;
   transform: translateY(-0.4%);
 }
 
-.image-animated:hover {
+.image-color-scroll:hover {
   filter: none;
   transform: translateY(-82%);
+}
+
+.image-color-ease-in:hover {
+  filter: grayscale(90%) brightness(105%) contrast(95%);
+  transition: filter 0.5s ease;
 }

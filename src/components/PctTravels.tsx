@@ -1,52 +1,45 @@
+import { useState } from "react";
 import ImageWithLoading from "./ImageWithLoading";
 import PctMap from "./PctMap";
 
 const PctTravels = () => {
-  const prelimImageUrls: string[] = [];
   const imageUrls: string[] = [];
-  for (let i = 1; i < 9; i++) {
-    const imagePath = `/pctPhotos/${i}.jpeg`;
-    prelimImageUrls.push(imagePath);
-  }
-  for (let i = 9; i < 151; i++) {
-    const imagePath = `/pctPhotos/${i}.jpeg`;
+  for (let i = 1; i < 151; i++) {
+    const imagePath = `/pctPhotos/${i}.png`;
     imageUrls.push(imagePath);
   }
 
+  const [hideIntro, setHideeIntro] = useState(false);
+
   return (
     <div>
-      <div className="w-3/5 mx-auto sm:my-64 text-[#283618] text-3xl leading-relaxed">
-        <div className="flex 2xl:flex-row flex-col items-center justify-between">
+      <div className="w-3/5 mx-auto h-screen text-[#283618] text-3xl leading-relaxed">
+        <div className="absolute left-1/2 transform -translate-x-1/2 mt-44">
           <PctMap />
-          <div className="md:w-1/2 2xl:mt-36 mt-44">
-            <span className="font-bold">Below</span> you can find picture of my
-            travels from Mexico to Canada along the Pacific Crest Trail
+        </div>
+        <div className="lg:pt-124 pt-64 grid lg:grid-cols-2">
+          <div className={`col-start-2 ${hideIntro ? "hidden" : "relative"}`}>
+            <div className="bg-[#fefae0] border-2 border-[#283618] rounded-md p-5">
+              <span className="font-bold">Below</span> you can find pictures of
+              my travels from Mexico to Canada along the Pacific Crest Trail
+              <button
+                className="absolute bottom-2 right-2 text-xs px-2 py-1 hover:text-[#496629] hover:cursor-pointer transition"
+                onClick={() => {
+                  setHideeIntro(true);
+                }}
+              >
+                Hide
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
       <div className="mt-24 mx-auto w-4/5  ">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2">
-          {prelimImageUrls.map((imageUrl, index) => (
-            <ImageWithLoading
-              key={index}
-              className="h-full w-full object-cover"
-              src={imageUrl}
-              alt={`Image ${index}`}
-            />
-          ))}
-        </div>
-
-        <div className="w-3/5 mx-auto my-8 sm:my-24 text-[#283618] text-3xl leading-relaxed">
-          I hope that these pictures can bring you even a fraction of the joy
-          that they have brought me
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 ">
           {imageUrls.map((imageUrl, index) => (
             <ImageWithLoading
               key={index}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover image-color-ease-in"
               src={imageUrl}
               alt={`Image ${index}`}
             />
