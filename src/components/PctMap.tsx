@@ -46,6 +46,7 @@ export default function PctMap() {
         mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
           import.meta.env.VITE_MAPTILER_KEY
         }`}
+        // once we get to a certain zoom level, we want to remove the pct route to use the native one provided by maptiler
         onZoom={(e) => {
           const zoom = e.viewState.zoom;
           if (zoom > 10 && showPct) {

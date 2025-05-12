@@ -14,7 +14,7 @@ const PctTravels = () => {
   const [modalData, setModalData] = useState<{
     imageUrl: string;
     index: number;
-  } | null>({ imageUrl: `/pctPhotos/${13}.png`, index: 10 });
+  } | null>(null);
 
   return (
     <div>

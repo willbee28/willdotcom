@@ -36,6 +36,6 @@
 }
 
 .image-color-ease-in:hover {
-  filter: brightness(115%) contrast(105%);
+  filter: brightness(125%) contrast(105%);
   transition: filter 0.5s ease;
 }
