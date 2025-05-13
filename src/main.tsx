@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import PctInfo from "./pages/PctInfo.tsx";
+import PctInfo from "./pages/Pct.tsx";
 import LandingPage from "./pages/Landing.tsx";
 
 const router = createBrowserRouter([

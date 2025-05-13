@@ -1,5 +1,5 @@
 import "./../App.css";
-import PctTravels from "./../components/PctTravels";
+import PctTravels from "../components/PctTravels";
 
 function PctInfo() {
   return (

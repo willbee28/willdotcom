@@ -54,7 +54,7 @@ export default function PctMap({
   }, [latLon]);
 
   return (
-    <div className="border-1 border-[#798c66] rounded-sm">
+    <div className="flex justify-center ">
       <Map
         initialViewState={{
           longitude: -115,
@@ -62,7 +62,12 @@ export default function PctMap({
           zoom: 4.2,
         }}
         ref={mapRef}
-        style={{ width: 1600, height: 600 }}
+        style={{
+          width: "95%",
+          height: "600px",
+          borderRadius: "10px",
+          border: "1px solid #798c66",
+        }}
         attributionControl={false}
         mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
           import.meta.env.VITE_MAPTILER_KEY
