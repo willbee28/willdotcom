@@ -32,7 +32,7 @@ const ImageModal = ({
       };
       validLonLats();
     }
-  }, [modalData?.imageUrl]);
+  }, [modalData?.imageUrl, showModal]);
 
   const closeModal = () => {
     setShowModal(false);
