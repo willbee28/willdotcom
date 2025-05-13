@@ -14,8 +14,10 @@ import { useEffect, useRef, useState } from "react";
 
 export default function PctMap({
   latLon,
+  scrollPosit,
 }: {
   latLon: { lat: number; lon: number } | null;
+  scrollPosit: number;
 }) {
   const layerStyle: LineLayerSpecification = {
     id: "pctRoute",
@@ -102,6 +104,16 @@ export default function PctMap({
             <Layer {...layerStyle} />
           </Source>
         )}
+        <div className="absolute bottom-5 right-5">
+          <button
+            className="bg-[#fefae0] text-[#283618] px-4 py-2 rounded-md shadow-md hover:bg-[#496629] hover:text-white transition"
+            onClick={() => {
+              window.scrollTo({ top: scrollPosit, behavior: "smooth" });
+            }}
+          >
+            Scroll back
+          </button>
+        </div>
       </Map>
     </div>
   );

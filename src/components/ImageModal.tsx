@@ -59,11 +59,7 @@ const ImageModal = ({
             {showMapButton && (
               <button
                 className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
-                onClick={() => {
-                  closeModal();
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                  handleShowOnMap();
-                }}
+                onClick={handleShowOnMap}
               >
                 Show on Map
               </button>

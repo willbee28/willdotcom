@@ -19,12 +19,13 @@ const PctTravels = () => {
   const [latLon, setLatLon] = useState<{ lat: number; lon: number } | null>(
     null
   );
+  const [scrollPosit, setScrollPosit] = useState<number>(0);
 
   return (
     <div className="relative">
       <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
       <div className="lg:mt-40 mt-20">
-        <PctMap latLon={latLon} />
+        <PctMap latLon={latLon} scrollPosit={scrollPosit} />
       </div>
       <div className="w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 pb-24">
@@ -47,8 +48,13 @@ const PctTravels = () => {
         selectedImgUrl={selectedImgUrl}
         setShowModal={(e) => setShowModal(e)}
         handleShowOnMap={async () => {
-          // hide intro text
+          // hide intro text & modal
           setShowIntro(false);
+          setShowModal(false);
+          // scroll to top of page where map is
+          setScrollPosit(window.scrollY);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          // get lat lon from image
           const gpsData = await getLatLonFromImg(selectedImgUrl);
           if (gpsData) {
             setLatLon(gpsData);
