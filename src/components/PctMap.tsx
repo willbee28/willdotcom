@@ -47,7 +47,6 @@ export default function PctMap({
   // fly to if point is out of view
   useEffect(() => {
     if (mapRef.current && latLon) {
-      console.log("latLon: ", latLon);
       mapRef.current?.flyTo({
         center: [latLon.lon, latLon.lat],
       });
