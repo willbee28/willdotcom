@@ -1,6 +1,6 @@
 import { IoDownloadOutline } from "react-icons/io5";
 import getLatLonFromImg from "../utils/getLatLonFromImg";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type ModalDataType = {
   imageUrl: string;
@@ -33,13 +33,18 @@ const ImageModal = ({
     }
   }, [modalData?.imageUrl]);
 
+  const closeModal = () => {
+    setShowModal(false);
+    setShowMapButton(false);
+  };
+
   if (!showModal) return null;
   // check if modalData to make typescript below happy
   if (modalData)
     return (
       <div
         className="fixed inset-0 bg-black/80 z-30 flex items-center justify-center"
-        onClick={() => setShowModal(false)}
+        onClick={closeModal}
       >
         <div className="relative" onClick={(e) => e.stopPropagation()}>
           <img
@@ -58,7 +63,7 @@ const ImageModal = ({
             <button
               className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
               onClick={() => {
-                setShowModal(false);
+                closeModal();
                 window.scrollTo({ top: 0, behavior: "smooth" });
                 handleShowOnMap();
               }}
