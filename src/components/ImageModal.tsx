@@ -1,4 +1,6 @@
 import { IoDownloadOutline } from "react-icons/io5";
+import getLatLonFromImg from "../utils/getLatLonFromImg";
+import { useEffect, useMemo, useState } from "react";
 
 type ModalDataType = {
   imageUrl: string;
@@ -18,6 +20,19 @@ const ImageModal = ({
   modalData,
   handleShowOnMap,
 }: ImageModalProps) => {
+  const [showMapButton, setShowMapButton] = useState(false);
+
+  // only show "Show Map" button if latLon is not undefined, since some images lon lat data is unavailable
+  useEffect(() => {
+    if (modalData) {
+      const validLonLats = async () => {
+        const result = await getLatLonFromImg(modalData.imageUrl);
+        setShowMapButton(!!result);
+      };
+      validLonLats();
+    }
+  }, [modalData?.imageUrl]);
+
   if (!showModal) return null;
   // check if modalData to make typescript below happy
   if (modalData)
@@ -39,17 +54,18 @@ const ImageModal = ({
           >
             <IoDownloadOutline />
           </a>
-
-          <button
-            className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
-            onClick={() => {
-              setShowModal(false);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              handleShowOnMap();
-            }}
-          >
-            Show on Map
-          </button>
+          {showMapButton && (
+            <button
+              className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
+              onClick={() => {
+                setShowModal(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                handleShowOnMap();
+              }}
+            >
+              Show on Map
+            </button>
+          )}
         </div>
       </div>
     );

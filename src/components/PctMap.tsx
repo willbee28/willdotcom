@@ -1,6 +1,7 @@
 import {
   Layer,
   LineLayerSpecification,
+  MapRef,
   Map,
   Marker,
   NavigationControl,
@@ -8,7 +9,7 @@ import {
 } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { FeatureCollection } from "geojson";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import pctFullJson from "/geojson/2024-pct-full.json";
 
 export default function PctMap({
@@ -31,6 +32,9 @@ export default function PctMap({
   //  so we want to remove ours when we zoom in close enough
   const [showPct, setShowPct] = useState<Boolean>(true);
 
+  // ref needed for fly-to functionality
+  const mapRef = useRef<MapRef>(null);
+
   // its such a big file of geojson that we actually want to load it via a Promise
   useEffect(() => {
     fetch("/geojson/2024-pct-full.json")
@@ -40,6 +44,16 @@ export default function PctMap({
       .catch((err) => console.error("Failed to load PCT GeoJSON: ", err));
   }, []);
 
+  // fly to if point is out of view
+  useEffect(() => {
+    if (mapRef.current && latLon) {
+      console.log("latLon: ", latLon);
+      mapRef.current?.flyTo({
+        center: [latLon.lon, latLon.lat],
+      });
+    }
+  }, [latLon]);
+
   return (
     <div className="border-1 border-[#798c66] rounded-sm">
       <Map
@@ -48,6 +62,7 @@ export default function PctMap({
           latitude: 41.3,
           zoom: 4.2,
         }}
+        ref={mapRef}
         style={{ width: 1600, height: 600 }}
         attributionControl={false}
         mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
