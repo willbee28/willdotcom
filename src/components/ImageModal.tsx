@@ -21,6 +21,7 @@ const ImageModal = ({
   handleShowOnMap,
 }: ImageModalProps) => {
   const [showMapButton, setShowMapButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // only show "Show Map" button if latLon is not undefined, since some images lon lat data is unavailable
   useEffect(() => {
@@ -35,6 +36,7 @@ const ImageModal = ({
 
   const closeModal = () => {
     setShowModal(false);
+    setIsLoading(true);
     setShowMapButton(false);
   };
 
@@ -50,26 +52,31 @@ const ImageModal = ({
           <img
             src={modalData.imageUrl}
             alt={`Image ${modalData.index}`}
+            onLoad={() => setIsLoading(false)}
             className="max-w-full max-h-[90vh] object-contain"
           />
-          <a
-            href={modalData.imageUrl}
-            download={`image-${modalData.index}.jpeg`}
-            className="absolute bottom-4 right-4 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 transition"
-          >
-            <IoDownloadOutline />
-          </a>
-          {showMapButton && (
-            <button
-              className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
-              onClick={() => {
-                closeModal();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                handleShowOnMap();
-              }}
-            >
-              Show on Map
-            </button>
+          {!isLoading && (
+            <>
+              <a
+                href={modalData.imageUrl}
+                download={`image-${modalData.index}.jpeg`}
+                className="absolute bottom-4 right-4 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 transition"
+              >
+                <IoDownloadOutline />
+              </a>
+              {showMapButton && (
+                <button
+                  className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
+                  onClick={() => {
+                    closeModal();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    handleShowOnMap();
+                  }}
+                >
+                  Show on Map
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
