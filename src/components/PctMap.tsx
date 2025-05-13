@@ -104,16 +104,18 @@ export default function PctMap({
             <Layer {...layerStyle} />
           </Source>
         )}
-        <div className="absolute bottom-5 right-5">
-          <button
-            className="bg-[#fefae0] text-[#283618] px-4 py-2 rounded-md shadow-md hover:bg-[#496629] hover:text-white transition"
-            onClick={() => {
-              window.scrollTo({ top: scrollPosit, behavior: "smooth" });
-            }}
-          >
-            Scroll back
-          </button>
-        </div>
+        {scrollPosit && (
+          <div className="absolute bottom-5 right-5">
+            <button
+              className="bg-[#fefae0] text-[#283618] px-4 py-2 rounded-md shadow-md hover:bg-[#496629] hover:text-white transition"
+              onClick={() => {
+                window.scrollTo({ top: scrollPosit, behavior: "smooth" });
+              }}
+            >
+              Scroll back
+            </button>
+          </div>
+        )}
       </Map>
     </div>
   );
