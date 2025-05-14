@@ -1,25 +1,26 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ImageWithLoading from "./ImageWithLoading";
 import PctMap from "./PctMap";
 import ImageModal from "./ImageModal";
-import getLatLonFromImg from "../utils/getLatLonFromImg";
+import getLatLonFromImg, { LonLatType } from "../utils/getLatLonFromImg";
 import IntroText from "./IntroText";
 
 const PctTravels = () => {
-  const imageUrls: string[] = [];
-  for (let i = 1; i < 145; i++) {
-    const imagePath = `/pctPhotos/${i}.jpeg`;
-    imageUrls.push(imagePath);
-  }
-
   const [showIntro, setShowIntro] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedImgUrl, setSelectedImgUrl] = useState("");
   // latitude and longitude for point of specific image selected
-  const [latLon, setLatLon] = useState<{ lat: number; lon: number } | null>(
-    null
-  );
+  const [latLon, setLatLon] = useState<LonLatType>(undefined);
   const [scrollPosit, setScrollPosit] = useState<number>(0);
+
+  const imageUrls = useMemo(() => {
+    const images: string[] = [];
+    for (let i = 1; i < 145; i++) {
+      const imagePath = `/pctPhotos/${i}.jpeg`;
+      images.push(imagePath);
+    }
+    return images;
+  }, []);
 
   return (
     <div className="relative">
@@ -47,15 +48,13 @@ const PctTravels = () => {
         showModal={showModal}
         selectedImgUrl={selectedImgUrl}
         setShowModal={(e) => setShowModal(e)}
-        handleShowOnMap={async () => {
+        handleShowOnMap={(gpsData: LonLatType) => {
           // hide intro text & modal
           setShowIntro(false);
-          setShowModal(false);
           // scroll to top of page where map is
           setScrollPosit(window.scrollY);
           window.scrollTo({ top: 0, behavior: "smooth" });
           // get lat lon from image
-          const gpsData = await getLatLonFromImg(selectedImgUrl);
           if (gpsData) {
             setLatLon(gpsData);
           }

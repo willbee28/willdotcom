@@ -10,13 +10,14 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { FeatureCollection } from "geojson";
 import { useEffect, useRef, useState } from "react";
+import { LonLatType } from "../utils/getLatLonFromImg";
 // import pctFullJson from "/geojson/2024-pct-full.json";
 
 export default function PctMap({
   latLon,
   scrollPosit,
 }: {
-  latLon: { lat: number; lon: number } | null;
+  latLon: LonLatType;
   scrollPosit: number;
 }) {
   const layerStyle: LineLayerSpecification = {

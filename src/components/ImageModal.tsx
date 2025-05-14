@@ -1,13 +1,15 @@
 import { IoDownloadOutline } from "react-icons/io5";
-import getLatLonFromImg from "../utils/getLatLonFromImg";
+import getLatLonFromImg, { LonLatType } from "../utils/getLatLonFromImg";
 import { useEffect, useState } from "react";
 
 type ImageModalProps = {
   showModal: boolean;
   selectedImgUrl: string;
   setShowModal: (bool: boolean) => void;
-  handleShowOnMap: () => void;
+  handleShowOnMap: (lonLat: LonLatType) => void;
 };
+
+let result: LonLatType;
 
 const ImageModal = ({
   showModal,
@@ -15,22 +17,21 @@ const ImageModal = ({
   selectedImgUrl,
   handleShowOnMap,
 }: ImageModalProps) => {
-  const [showMapButton, setShowMapButton] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [lonLat, setLonLat] = useState<LonLatType | null>(null);
 
   // only show "Show Map" button if latLon is not undefined, since some images lon lat data is unavailable
   useEffect(() => {
     const validLonLats = async () => {
-      const result = await getLatLonFromImg(selectedImgUrl);
-      setShowMapButton(!!result);
+      setLonLat(await getLatLonFromImg(selectedImgUrl));
     };
     validLonLats();
-  }, [selectedImgUrl, showModal]);
+  }, [showModal]);
 
   const closeModal = () => {
     setShowModal(false);
     setIsLoading(true);
-    setShowMapButton(false);
+    setLonLat(undefined);
   };
 
   if (!showModal) return null;
@@ -46,7 +47,7 @@ const ImageModal = ({
           alt={`Image ${selectedImgUrl}`}
           onLoad={() => setIsLoading(false)}
           className="max-w-full max-h-[90vh] object-contain"
-        />
+        ></img>
         {!isLoading && (
           <>
             <a
@@ -56,10 +57,13 @@ const ImageModal = ({
             >
               <IoDownloadOutline />
             </a>
-            {showMapButton && (
+            {lonLat && (
               <button
                 className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
-                onClick={handleShowOnMap}
+                onClick={() => {
+                  handleShowOnMap(lonLat);
+                  closeModal();
+                }}
               >
                 Show on Map
               </button>

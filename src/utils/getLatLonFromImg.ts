@@ -1,5 +1,7 @@
 import exifr from "exifr";
 
+export type LonLatType = { lat: number; lon: number } | undefined;
+
 export default async function getLatLonFromImg(imageUrl: string) {
   try {
     const img = await fetch(imageUrl).then((res) => res.blob());
