@@ -92,6 +92,7 @@ export default function PctMap({
           showZoom={true}
           visualizePitch={true}
         />
+        {/* Show point of where picture was taken if picture is selected */}
         {latLon?.lat && latLon.lon && (
           <Marker longitude={latLon.lon} latitude={latLon.lat}>
             <div className="relative w-6 h-6">
@@ -100,11 +101,13 @@ export default function PctMap({
             </div>
           </Marker>
         )}
+        {/* Show PCT drawn on map when zoom > 10 and geoData (pct latlons) is loaded */}
         {geoData && showPct && (
           <Source id="pctRoute" type="geojson" data={geoData}>
             <Layer {...layerStyle} />
           </Source>
         )}
+        {/* Scroll back to where user was in image gallery scroll */}
         {scrollPosit && (
           <div className="absolute bottom-5 right-5">
             <button
