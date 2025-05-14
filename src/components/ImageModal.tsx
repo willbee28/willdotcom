@@ -9,8 +9,6 @@ type ImageModalProps = {
   handleShowOnMap: (lonLat: LonLatType) => void;
 };
 
-let result: LonLatType;
-
 const ImageModal = ({
   showModal,
   setShowModal,

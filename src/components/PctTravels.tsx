@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import ImageWithLoading from "./ImageWithLoading";
 import PctMap from "./PctMap";
 import ImageModal from "./ImageModal";
-import getLatLonFromImg, { LonLatType } from "../utils/getLatLonFromImg";
+import { LonLatType } from "../utils/getLatLonFromImg";
 import IntroText from "./IntroText";
 
 const PctTravels = () => {
