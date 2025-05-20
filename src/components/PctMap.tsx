@@ -93,13 +93,15 @@ export default function PctMap({
           visualizePitch={true}
         />
         {/* Show point of where picture was taken if picture is selected */}
-        {latLon?.lat && latLon.lon && (
+        {latLon?.lat && latLon.lon ? (
           <Marker longitude={latLon.lon} latitude={latLon.lat}>
             <div className="relative w-6 h-6">
               {/* Green centered dot */}
               <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-green-700 rounded-full border-2 border-white shadow-lg transform -translate-x-1/2 -translate-y-1/2" />
             </div>
           </Marker>
+        ) : (
+          <> </>
         )}
         {/* Show PCT drawn on map when zoom > 10 and geoData (pct latlons) is loaded */}
         {geoData && showPct && (

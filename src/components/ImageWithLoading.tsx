@@ -9,7 +9,7 @@ const ImageWithLoading = ({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="relative h-128 bg-gray-200">
+    <div className="relative lg:h-128 h-64 bg-gray-200">
       {!loaded && (
         <div className="absolute inset-0 flex justify-center items-center">
           <div className="loader"></div> {/* Your loading spinner */}
