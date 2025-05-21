@@ -66,10 +66,8 @@ export default function PctMap({
         }}
         ref={mapRef}
         style={{
-          width: "95%",
-          height: "600px",
-          borderRadius: "10px",
-          border: "1px solid #798c66",
+          width: "100%",
+          height: "900px",
         }}
         attributionControl={false}
         mapStyle={`https://api.maptiler.com/maps/outdoor/style.json?key=${
