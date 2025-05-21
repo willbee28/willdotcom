@@ -13,9 +13,8 @@ const IntroText = ({
         }`}
       >
         <div className="text-xl bg-[#fefae0] border-2 border-[#283618] rounded-md p-5">
-          <span className="font-bold xs:bg-green-500">Below</span> you can find
-          pictures of my travels from Mexico to Canada along the Pacific Crest
-          Trail
+          <span className="font-bold">Below</span> you can find pictures of my
+          travels from Mexico to Canada along the Pacific Crest Trail
           <button
             className="absolute bottom-2 right-2 text-xs px-2 py-1 hover:text-[#496629] hover:cursor-pointer transition"
             onClick={() => {
