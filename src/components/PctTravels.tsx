@@ -25,7 +25,7 @@ const PctTravels = () => {
   return (
     <div className="relative">
       <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
-      <div className="lg:mt-14 mt-20">
+      <div className="mt-22 xxs:mt-16 sm:mt-14">
         <PctMap latLon={latLon} scrollPosit={scrollPosit} />
       </div>
       <div className="w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed mt-10">
