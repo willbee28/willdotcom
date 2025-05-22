@@ -3,6 +3,7 @@
 @theme {
   --breakpoint-xxs: 365px;
   --breakpoint-xs: 480px;
+  --breakpoint-xxl: 1440px;
 }
 
 :root {

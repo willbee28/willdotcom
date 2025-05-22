@@ -5,6 +5,8 @@ import ImageModal from "./ImageModal";
 import { LonLatType } from "../utils/getLatLonFromImg";
 import IntroText from "./IntroText";
 
+export const IMAGE_COUNT = 144;
+
 const PctTravels = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -15,12 +17,46 @@ const PctTravels = () => {
 
   const imageUrls = useMemo(() => {
     const images: string[] = [];
-    for (let i = 1; i < 145; i++) {
+    for (let i = 1; i <= IMAGE_COUNT; i++) {
       const imagePath = `/pctPhotos/${i}.jpeg`;
       images.push(imagePath);
     }
     return images;
   }, []);
+
+  const handlePrev = () => {
+    const match = selectedImgUrl.match(/(\d+)(?=\.jpeg$)/);
+    if (!match) return; // no number found in URL
+
+    const currentIndex = parseInt(match[1]);
+    const prevIndex = currentIndex - 1;
+
+    // if no next image (end of bounds)
+    if (prevIndex <= 0) return;
+
+    const prevImgUrl = selectedImgUrl.replace(
+      /(\d+)(?=\.jpeg$)/,
+      `${prevIndex}`
+    );
+    setSelectedImgUrl(prevImgUrl);
+  };
+
+  const handleNext = () => {
+    const match = selectedImgUrl.match(/(\d+)(?=\.jpeg$)/);
+    if (!match) return; // no number found in URL
+
+    const currentIndex = parseInt(match[1]);
+    const nextIndex = currentIndex + 1;
+
+    // if no next image (end of bounds)
+    if (nextIndex >= IMAGE_COUNT) return;
+
+    const nextImgUrl = selectedImgUrl.replace(
+      /(\d+)(?=\.jpeg$)/,
+      `${nextIndex}`
+    );
+    setSelectedImgUrl(nextImgUrl);
+  };
 
   return (
     <div className="relative">
@@ -59,6 +95,8 @@ const PctTravels = () => {
             setLatLon(gpsData);
           }
         }}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
       />
     </div>
   );
