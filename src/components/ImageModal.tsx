@@ -16,14 +16,16 @@ const ImageModal = ({
   handleShowOnMap,
 }: ImageModalProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [lonLat, setLonLat] = useState<LonLatType | null>(null);
+  const [lonLat, setLonLat] = useState<LonLatType>();
 
   // only show "Show Map" button if latLon is not undefined, since some images lon lat data is unavailable
   useEffect(() => {
-    const validLonLats = async () => {
-      setLonLat(await getLatLonFromImg(selectedImgUrl));
+    const checkLonLats = async () => {
+      const lonLat = await getLatLonFromImg(selectedImgUrl);
+      console.log(lonLat);
+      setLonLat(lonLat);
     };
-    validLonLats();
+    checkLonLats();
   }, [showModal]);
 
   const closeModal = () => {
@@ -55,15 +57,21 @@ const ImageModal = ({
             >
               <IoDownloadOutline />
             </a>
-            {lonLat && (
+            {lonLat !== undefined && (
               <button
-                className="absolute bottom-4 right-14 bg-[#fefae0] border-1 px-2 py-2 rounded shadow hover:bg-gray-200 text-xs transition"
+                className={`absolute bottom-4 right-14 border-1 px-2 py-2 rounded shadow  text-xs transition 
+                  ${
+                    lonLat !== null
+                      ? "bg-[#fefae0] hover:bg-gray-200"
+                      : "bg-gray-200"
+                  }`}
                 onClick={() => {
-                  handleShowOnMap(lonLat);
+                  if (lonLat !== null) handleShowOnMap(lonLat);
                   closeModal();
                 }}
+                disabled={lonLat === null}
               >
-                Show on Map
+                {lonLat == null ? "No metadata" : "Show on Map"}
               </button>
             )}
           </>

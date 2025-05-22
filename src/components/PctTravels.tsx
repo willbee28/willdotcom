@@ -10,7 +10,7 @@ const PctTravels = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImgUrl, setSelectedImgUrl] = useState("");
   // latitude and longitude for point of specific image selected
-  const [latLon, setLatLon] = useState<LonLatType>(undefined);
+  const [latLon, setLatLon] = useState<LonLatType>();
   const [scrollPosit, setScrollPosit] = useState<number>(0);
 
   const imageUrls = useMemo(() => {
