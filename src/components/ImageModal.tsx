@@ -37,7 +37,7 @@ const ImageModal = ({
       setLonLat(lonLat);
     };
     checkLonLats();
-  }, [selectedImgUrl]);
+  }, [showModal, selectedImgUrl]);
 
   const closeModal = () => {
     setShowModal(false);
@@ -110,7 +110,7 @@ const ImageModal = ({
         <IoChevronForward />
       </button>
 
-      <div className="z-10" onClick={(e) => e.stopPropagation()}>
+      <div className="relative z-10" onClick={(e) => e.stopPropagation()}>
         {/* Image */}
         <img
           src={selectedImgUrl}
