@@ -131,7 +131,7 @@ const ImageModal = ({
             </a>
             {lonLat !== undefined && (
               <button
-                className={`absolute bottom-4 right-20 px-2 py-2 rounded text-xs border 
+                className={`absolute bottom-4 right-16 px-2 py-2 rounded text-xs border 
                   ${
                     lonLat !== null
                       ? "bg-[#fefae0] hover:bg-gray-200 transition"
