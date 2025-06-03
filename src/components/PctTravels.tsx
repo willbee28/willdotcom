@@ -18,7 +18,7 @@ const PctTravels = () => {
   const imageUrls = useMemo(() => {
     const images: string[] = [];
     for (let i = 1; i <= IMAGE_COUNT; i++) {
-      const imagePath = `/pctPhotos/${i}.jpeg`;
+      const imagePath = `/pctThumbs/${i}.jpeg`;
       images.push(imagePath);
     }
     return images;
@@ -64,8 +64,8 @@ const PctTravels = () => {
       <div className="mt-22 xxs:mt-16 sm:mt-14">
         <PctMap latLon={latLon} scrollPosit={scrollPosit} />
       </div>
-      <div className="w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed mt-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 pb-24">
+      <div className="xl:w-3/5 lg:w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed mt-10">
+        <div className="grid grid-cols-3 gap-2 p-2 pb-24">
           {imageUrls.map((imageUrl, index) => (
             <ImageWithLoading
               key={index}

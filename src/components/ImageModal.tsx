@@ -73,6 +73,9 @@ const ImageModal = ({
 
   if (!showModal) return null;
 
+  // Replace "pctThumb" with "pctPhotos" to get larger photo for viewing
+  const largeSrc = selectedImgUrl?.replace("pctThumbs", "pctPhotos");
+
   return (
     <div
       className="fixed inset-0 bg-black/80 z-20 flex items-center justify-center"
@@ -113,7 +116,7 @@ const ImageModal = ({
       <div className="relative z-10" onClick={(e) => e.stopPropagation()}>
         {/* Image */}
         <img
-          src={selectedImgUrl}
+          src={largeSrc}
           alt={`Image ${selectedImgUrl}`}
           onLoad={() => setIsLoading(false)}
           className="max-w-[80vw] max-h-[90vh] object-contain"
