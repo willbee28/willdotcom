@@ -5,6 +5,7 @@ import ImageModal from "./ImageModal";
 import { LonLatType } from "../utils/getLatLonFromImg";
 import IntroText from "./IntroText";
 import { motion, useScroll, useTransform } from "framer-motion";
+import ImageGrid from "./ImageGrid";
 
 export const IMAGE_COUNT = 144;
 
@@ -15,15 +16,6 @@ const PctTravels = () => {
   // latitude and longitude for point of specific image selected
   const [latLon, setLatLon] = useState<LonLatType>();
   const [scrollPosit, setScrollPosit] = useState<number>(0);
-
-  const imageUrls = useMemo(() => {
-    const images: string[] = [];
-    for (let i = 1; i <= IMAGE_COUNT; i++) {
-      const imagePath = `/pctThumbs/${i}.jpeg`;
-      images.push(imagePath);
-    }
-    return images;
-  }, []);
 
   const handlePrev = () => {
     const match = selectedImgUrl.match(/(\d+)(?=\.jpeg$)/);
@@ -80,22 +72,10 @@ const PctTravels = () => {
         <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
         <PctMap latLon={latLon} scrollPosit={scrollPosit} />
       </motion.div>
-      <div className="xl:w-3/5 lg:w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed">
-        <div className="grid grid-cols-3 gap-2 p-2 pb-24">
-          {imageUrls.map((imageUrl, index) => (
-            <ImageWithLoading
-              key={index}
-              className="h-full w-full object-cover image-color-ease-in hover:cursor-pointer"
-              src={imageUrl}
-              alt={`Image ${index}`}
-              onClick={() => {
-                setSelectedImgUrl(imageUrl);
-                setShowModal(true);
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      <ImageGrid
+        setSelectedImgUrl={setSelectedImgUrl}
+        setShowModal={setShowModal}
+      />
       <ImageModal
         showModal={showModal}
         selectedImgUrl={selectedImgUrl}
