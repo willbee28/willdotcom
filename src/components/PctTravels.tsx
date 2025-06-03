@@ -1,5 +1,4 @@
-import { useMemo, useRef, useState } from "react";
-import ImageWithLoading from "./ImageWithLoading";
+import { useRef, useState } from "react";
 import PctMap from "./PctMap";
 import ImageModal from "./ImageModal";
 import { LonLatType } from "../utils/getLatLonFromImg";
