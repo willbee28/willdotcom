@@ -1,9 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import PctMap from "./PctMap";
 import ImageModal from "./ImageModal";
 import { LonLatType } from "../utils/getLatLonFromImg";
 import IntroText from "./IntroText";
-import { motion, useScroll, useTransform } from "framer-motion";
 import ImageGrid from "./ImageGrid";
 
 export const IMAGE_COUNT = 144;
@@ -50,27 +49,12 @@ const PctTravels = () => {
     setSelectedImgUrl(nextImgUrl);
   };
 
-  const mapContainerRef = useRef(null);
-
-  // Watch scroll position relative to map container
-  const { scrollYProgress } = useScroll({
-    target: mapContainerRef,
-    offset: ["start start", "end start"], // map shrinks as it leaves top
-  });
-
-  // Map scroll progress to scale
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
   return (
     <div className="relative">
-      <motion.div
-        ref={mapContainerRef}
-        style={{ scale }}
-        className="mt-22 xxs:mt-16 sm:mt-14"
-      >
-        <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
+      <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
+      <div className="mt-22 xxs:mt-16 sm:mt-14">
         <PctMap latLon={latLon} scrollPosit={scrollPosit} />
-      </motion.div>
+      </div>
       <ImageGrid
         setSelectedImgUrl={setSelectedImgUrl}
         setShowModal={setShowModal}
