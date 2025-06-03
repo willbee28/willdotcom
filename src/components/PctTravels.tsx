@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import ImageWithLoading from "./ImageWithLoading";
 import PctMap from "./PctMap";
 import ImageModal from "./ImageModal";
 import { LonLatType } from "../utils/getLatLonFromImg";
 import IntroText from "./IntroText";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export const IMAGE_COUNT = 144;
 
@@ -58,13 +59,28 @@ const PctTravels = () => {
     setSelectedImgUrl(nextImgUrl);
   };
 
+  const mapContainerRef = useRef(null);
+
+  // Watch scroll position relative to map container
+  const { scrollYProgress } = useScroll({
+    target: mapContainerRef,
+    offset: ["start start", "end start"], // map shrinks as it leaves top
+  });
+
+  // Map scroll progress to scale
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
   return (
     <div className="relative">
-      <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
-      <div className="mt-22 xxs:mt-16 sm:mt-14">
+      <motion.div
+        ref={mapContainerRef}
+        style={{ scale }}
+        className="mt-22 xxs:mt-16 sm:mt-14"
+      >
+        <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
         <PctMap latLon={latLon} scrollPosit={scrollPosit} />
-      </div>
-      <div className="xl:w-3/5 lg:w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed mt-10">
+      </motion.div>
+      <div className="xl:w-3/5 lg:w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed">
         <div className="grid grid-cols-3 gap-2 p-2 pb-24">
           {imageUrls.map((imageUrl, index) => (
             <ImageWithLoading
