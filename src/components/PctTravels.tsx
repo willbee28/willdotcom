@@ -51,8 +51,8 @@ const PctTravels = () => {
 
   return (
     <div className="relative">
-      <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
       <div className="mt-22 xxs:mt-16 sm:mt-14">
+        <IntroText showIntro={showIntro} setShowIntro={setShowIntro} />
         <PctMap latLon={latLon} scrollPosit={scrollPosit} />
       </div>
       <ImageGrid

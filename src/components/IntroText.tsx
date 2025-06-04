@@ -6,7 +6,7 @@ const IntroText = ({
   setShowIntro: (show: boolean) => void;
 }) => {
   return (
-    <div className="absolute grid lg:grid-cols-4 grid-cols-6 lg:mt-124 mt-64 z-10">
+    <div className="absolute grid lg:grid-cols-4 grid-cols-6 lg:mt-110 mt-50 z-10">
       <div
         className={`lg:col-start-3 lg:col-span-1 col-start-2 col-span-4 ${
           !showIntro ? "hidden" : "relative"
