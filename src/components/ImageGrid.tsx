@@ -18,7 +18,7 @@ function ImageGrid({ setSelectedImgUrl, setShowModal }: ImageGridType) {
   }, []);
 
   return (
-    <div className="xl:w-3/5 lg:w-4/5 mx-auto text-[#283618] text-3xl leading-relaxed">
+    <div className="max-w-screen-xl mx-auto text-[#283618] text-3xl leading-relaxed">
       <div className="grid grid-cols-3 gap-2 p-2 pb-24">
         {imageUrls.map((imageUrl, index) => (
           <ImageWithLoading
